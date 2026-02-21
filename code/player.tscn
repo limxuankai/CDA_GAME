@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4nl7g48xkxsh"]
+[gd_scene load_steps=6 format=3 uid="uid://b4nl7g48xkxsh"]
 
 [ext_resource type="Script" uid="uid://c3u5w6wyg2bnt" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://n4k6fpyfuk4p" path="res://plauer.png" id="2_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://ciob4plo40dkc" path="res://hurtbox.tscn" id="3_i3pqv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
 radius = 252.28555
 
-[node name="player" type="CharacterBody2D" groups=["player"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqtel"]
+radius = 138.0
+
+[node name="player" type="CharacterBody2D"]
 position = Vector2(278, 181)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_onrkg")
@@ -18,3 +22,11 @@ texture = ExtResource("2_i3pqv")
 position = Vector2(4, -10)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_4flbx")
+
+[node name="hurtbox" parent="." instance=ExtResource("3_i3pqv")]
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2(2, -12)
+shape = SubResource("CircleShape2D_hqtel")
+
+[editable path="hurtbox"]

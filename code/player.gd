@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 var SPEED = 400.0
 
+func _ready():
+	add_to_group("player")
+
 func _physics_process(_delta):
 	movement()
-
 
 func movement():
 	var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
