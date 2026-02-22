@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var damage := 10
+@export var damage := 1
 
 func _ready():
 	add_to_group("hitbox")

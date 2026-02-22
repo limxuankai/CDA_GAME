@@ -13,17 +13,19 @@ func _ready():
 
 func _on_area_entered(area):
 	if area.is_in_group("hitbox"):
-		print("Entered hitbox")
 		current_hitbox = area
+		emit_signal("hurt", current_hitbox.damage)
+		print("Damage dealt:", current_hitbox.damage)
 		$Timer.start()
 
 func _on_area_exited(area):
 	if area == current_hitbox:
-		print("Left hitbox")
 		current_hitbox = null
 		$Timer.stop()
 
 func _on_timer_timeout():
 	if current_hitbox:
 		emit_signal("hurt", current_hitbox.damage)
+	else:
+		pass
 		print("Damage dealt:", current_hitbox.damage)

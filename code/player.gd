@@ -1,9 +1,18 @@
 extends CharacterBody2D
 
 var SPEED = 400.0
+var HP = 3
 
 func _ready():
 	add_to_group("player")
+	$hurtbox.hurt.connect(_on_hit)
+
+func _on_hit(damage):
+	HP -= damage
+	print("HP:", HP)
+	if HP < 1:
+		print("lose")
+		get_tree().reload_current_scene()
 
 func _physics_process(_delta):
 	movement()
