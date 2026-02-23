@@ -12,7 +12,7 @@ radius = 138.0
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(278, 181)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

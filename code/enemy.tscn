@@ -5,27 +5,28 @@
 [ext_resource type="PackedScene" uid="uid://co76fyjy5eixa" path="res://hitbox.tscn" id="3_qi2p4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
-size = Vector2(132, 748)
+size = Vector2(64, 304)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
-size = Vector2(102, 400)
+size = Vector2(38, 158)
 
 [node name="enemy" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_qi2p4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(17, 5)
+position = Vector2(4, 4)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_7k104")
 
 [node name="hitbox" parent="." instance=ExtResource("3_qi2p4")]
 
 [node name="CollisionShape2D" parent="hitbox" index="0"]
-position = Vector2(11, 6)
+position = Vector2(5, 3)
 shape = SubResource("RectangleShape2D_iifgy")
 
 [editable path="hitbox"]
