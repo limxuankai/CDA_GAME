@@ -12,7 +12,10 @@ func _on_hit(damage):
 	print("HP:", HP)
 	if HP < 1:
 		print("lose")
-		get_tree().reload_current_scene()
+		call_deferred("_restart_game")
+		
+func _restart_game():
+	get_tree().reload_current_scene()
 
 func _physics_process(_delta):
 	movement()
