@@ -1,11 +1,19 @@
 extends CharacterBody2D
 
 var SPEED = 400.0
-var HP = 3
+const MAX_HP = 3 
+var HP = MAX_HP
 
 func _ready():
 	add_to_group("player")
+	update_health_ui()
+	$"Health Bar".max_value = MAX_HP
 	$hurtbox.hurt.connect(_on_hit)
+
+
+func update_health_ui():
+	$"Health Bar/Health Label".text = "HP: %s" % HP
+	$"Health Bar".value = HP 
 
 func _on_hit(damage):
 	HP -= damage
@@ -13,6 +21,7 @@ func _on_hit(damage):
 	if HP < 1:
 		print("lose")
 		call_deferred("_restart_game")
+	update_health_ui()
 		
 func _restart_game():
 	get_tree().reload_current_scene()
