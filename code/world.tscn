@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://pp75gpkxo7td"]
+[gd_scene load_steps=5 format=3 uid="uid://pp75gpkxo7td"]
 
+[ext_resource type="PackedScene" uid="uid://cilfxsbhloxl6" path="res://spawner.tscn" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://b4nl7g48xkxsh" path="res://player.tscn" id="1_fj7yv"]
 [ext_resource type="Texture2D" uid="uid://cu776px17dx2a" path="res://gass.png" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://dpiwdnogs7rm4" path="res://enemy.tscn" id="2_tlwt5"]
@@ -13,6 +14,8 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_tlwt5")
 region_enabled = true
 region_rect = Rect2(0, 0, 10926.586, 7034.8516)
+
+[node name="spawner" parent="." instance=ExtResource("1_aqk2v")]
 
 [node name="player" parent="." instance=ExtResource("1_fj7yv")]
 

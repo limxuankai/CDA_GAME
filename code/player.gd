@@ -6,6 +6,7 @@ var HP = 3
 func _ready():
 	add_to_group("player")
 	$hurtbox.hurt.connect(_on_hit)
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
 func _on_hit(damage):
 	HP -= damage
