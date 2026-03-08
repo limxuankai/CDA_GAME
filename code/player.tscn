@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4nl7g48xkxsh"]
+[gd_scene load_steps=8 format=3 uid="uid://b4nl7g48xkxsh"]
 
 [ext_resource type="Script" uid="uid://c3u5w6wyg2bnt" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://n4k6fpyfuk4p" path="res://plauer.png" id="2_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://ciob4plo40dkc" path="res://hurtbox.tscn" id="3_i3pqv"]
-[ext_resource type="PackedScene" uid="uid://cx3kn085ygnru" path="res://projectile.tscn" id="4_hqtel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4flbx"]
 radius = 252.28555
@@ -21,9 +20,6 @@ bg_color = Color(0.25848994, 0.55185014, 0.2349875, 1)
 position = Vector2(278, 181)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_onrkg")
-
-[node name="projectile" parent="." instance=ExtResource("4_hqtel")]
-scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_i3pqv")
@@ -58,5 +54,10 @@ offset_bottom = 110.0
 theme_override_font_sizes/font_size = 64
 text = "HP:"
 horizontal_alignment = 1
+
+[node name="GunTip" type="Marker2D" parent="."]
+position = Vector2(4.9999995, -4.9999995)
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [editable path="hurtbox"]
