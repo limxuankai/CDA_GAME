@@ -6,11 +6,10 @@ var SPEED = 50.0
 
 func _ready():
 	add_to_group("enemy")
-	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING #Prevent sticking to player
 
 func _physics_process(_delta):
-	var direction = global_position.direction_to(player.global_position)
-	velocity = direction*SPEED
+	velocity = global_position.direction_to(player.global_position)*SPEED
 	move_and_slide()
 
 func take_damage(amount):

@@ -1,37 +1,52 @@
 extends CharacterBody2D
 
-var SPEED = 400.0
 const MAX_HP = 3 
+const SPEED = 400.0
+
 var HP = MAX_HP
-@export var bullet = load("res://bullet.tscn")
+var bullet = load("res://bullet.tscn")
+var shoot_state = false
+var beat_node = null
 
 @onready var gun_tip = $GunTip
 
+signal beat_hit
+
 func _ready():
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("player")
 	update_health_ui()
 	$"Health Bar".max_value = MAX_HP
 	$hurtbox.hurt.connect(_on_hit)
-	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
-	$Camera2D.enabled = true
+	$receive.shoot_state.connect(_on_shoot_state)
+	$Camera2D.enabled = true #Camera follow player
+	
+func _on_shoot_state(bn):
+	if bn != null:
+		shoot_state = bn.shoot_state
+		beat_node = bn
+	else:
+		shoot_state = false
+	print("Beat ready to shoot:", shoot_state)
+	
+func _input(event):
+	if event.is_action_pressed("shoot") and shoot_state:
+		shoot()
+		shoot_state = false
+		if beat_node != null:
+			beat_node.queue_free()
+	
+	
+func shoot():
+	var newbullet = bullet.instantiate()
+	get_tree().current_scene.add_child(newbullet)
+	newbullet.global_position = gun_tip.global_position
+	var dir = (get_global_mouse_position() - gun_tip.global_position).normalized()
+	newbullet.direction = dir
+
 
 func _physics_process(_delta):
 	movement()
-	
-func _input(event):
-	if event.is_action_pressed("shoot"):
-		shoot()
-	
-func shoot():
-	var bullet = bullet.instantiate()
-	get_tree().current_scene.add_child(bullet)
-	bullet.global_position = gun_tip.global_position
-	var dir = (get_global_mouse_position() - gun_tip.global_position).normalized()
-	bullet.direction = dir
-
-func update_health_ui():
-	$"Health Bar/Health Label".text = "HP: %s" % HP
-	$"Health Bar".value = HP 
 
 func _on_hit(damage):
 	HP -= damage
@@ -40,7 +55,7 @@ func _on_hit(damage):
 		print("lose")
 		call_deferred("_restart_game")
 	update_health_ui()
-		
+
 func _restart_game():
 	get_tree().reload_current_scene()
 
@@ -50,3 +65,7 @@ func movement():
 	var mov = Vector2(x_mov,y_mov)
 	velocity = mov.normalized() * SPEED
 	move_and_slide()
+
+func update_health_ui():
+	$"Health Bar/Health Label".text = "HP: %s" % HP
+	$"Health Bar".value = HP 

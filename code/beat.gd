@@ -1,7 +1,11 @@
 extends Area2D
 
-@export var speed := 800
-var direction = Vector2.ZERO
+var direction = Vector2.LEFT
+var speed = 200
+var shoot_state = true
+
+func _ready():
+	add_to_group("beats")
 
 func _process(delta):
 	position += direction * speed * delta
