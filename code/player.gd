@@ -7,6 +7,9 @@ var HP = MAX_HP
 var bullet = load("res://bullet.tscn")
 var shoot_state = false
 var beat_node = null
+var experience = 0
+var experience_level = 1
+var collected_experience = 0
 
 @onready var gun_tip = $GunTip
 
@@ -67,3 +70,9 @@ func movement():
 func update_health_ui():
 	$"Health Bar/Health Label".text = "HP: %s" % HP
 	$"Health Bar".value = HP 
+	
+
+
+func _on_exp_collect_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		var gem_exp = area.collect()

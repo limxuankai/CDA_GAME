@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 var health = 3
 var SPEED = 50.0
+@export var experience = 1
+@onready var loot_base = get_tree().get_first_node_in_group("loot")
+var exp_gem = preload("res://objects/exp.tscn")
 @onready var player = get_tree().get_first_node_in_group("player")
 
 func _ready():
@@ -15,4 +18,11 @@ func _physics_process(_delta):
 func take_damage(amount):
 	health -= amount
 	if health <= 0:
-		queue_free()
+		death()
+
+func death():
+	var new_gem = exp_gem.instantiate()
+	new_gem.global_position = global_position
+	new_gem.experience = experience
+	loot_base.call_deferred("add_child",new_gem)
+	queue_free()
