@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cilfxsbhloxl6" path="res://spawner.tscn" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://b4nl7g48xkxsh" path="res://player.tscn" id="1_fj7yv"]
 [ext_resource type="Script" uid="uid://dkjq08i8poe22" path="res://world.gd" id="1_pkg7o"]
-[ext_resource type="Texture2D" uid="uid://cu776px17dx2a" path="res://gass.png" id="1_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://dock2fljunxct" path="res://assets/bg2.png" id="2_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://bomj3qjk1cna8" path="res://receive.tscn" id="4_036b0"]
 [ext_resource type="PackedScene" uid="uid://ms3ho3jnq0lw" path="res://beatspawner.tscn" id="5_dwbse"]
 [ext_resource type="AudioStream" uid="uid://nrdbp2baidbi" path="res://bgm.mp3" id="7_gbfbk"]
@@ -12,15 +12,13 @@
 script = ExtResource("1_pkg7o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
+texture_filter = 1
 texture_repeat = 2
 position = Vector2(624, 348.00003)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_tlwt5")
+scale = Vector2(16, 16)
+texture = ExtResource("2_pkg7o")
 region_enabled = true
 region_rect = Rect2(0, 0, 10926.586, 7034.8516)
-
-[node name="spawner" parent="." instance=ExtResource("1_aqk2v")]
 
 [node name="player" parent="." instance=ExtResource("1_fj7yv")]
 
@@ -35,3 +33,5 @@ position = Vector2(2359.9998, -1185)
 
 [node name="music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_gbfbk")
+
+[node name="spawner" parent="." instance=ExtResource("1_aqk2v")]

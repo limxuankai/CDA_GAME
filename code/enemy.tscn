@@ -1,32 +1,35 @@
 [gd_scene load_steps=6 format=3 uid="uid://dpiwdnogs7rm4"]
 
 [ext_resource type="Script" uid="uid://c3utt0xljxkeq" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://wuxx1i1cbxo" path="res://enemy1.png" id="2_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://dw24fcpxmiits" path="res://assets/mob1.png" id="2_qi2p4"]
 [ext_resource type="PackedScene" uid="uid://co76fyjy5eixa" path="res://hitbox.tscn" id="3_qi2p4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
-size = Vector2(64, 304)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iifgy"]
+radius = 3.25
+height = 15.5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
-size = Vector2(38, 158)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qi2p4"]
+radius = 1.875
+height = 8.25
 
 [node name="enemy_block" type="CharacterBody2D" groups=["enemy"]]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(2, 2)
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
+texture_filter = 1
+scale = Vector2(2, 2)
 texture = ExtResource("2_qi2p4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, 4)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_7k104")
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_iifgy")
 
 [node name="hitbox" parent="." instance=ExtResource("3_qi2p4")]
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" parent="hitbox" index="0"]
-position = Vector2(5, 3)
-shape = SubResource("RectangleShape2D_iifgy")
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_qi2p4")
 
 [editable path="hitbox"]

@@ -12,6 +12,8 @@ var experience_level = 1
 var collected_experience = 0
 
 @onready var gun_tip = $GunTip
+@onready var sprite = $Sprite2D
+@onready var sprite2 = $Sprite2D2
 
 func _ready():
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
@@ -66,6 +68,16 @@ func movement():
 	var mov = Vector2(x_mov,y_mov)
 	velocity = mov.normalized() * SPEED
 	move_and_slide()
+	if x_mov < 0:
+		sprite.flip_h = true
+		sprite2.flip_h = true
+		sprite2.position = Vector2(-135, -15)
+		gun_tip.position = Vector2(-85, -20)
+	elif x_mov > 0:
+		sprite.flip_h = false
+		sprite2.flip_h = false
+		sprite2.position = Vector2(135, -15)
+		gun_tip.position = Vector2(85, -20)
 
 func update_health_ui():
 	$"Health Bar/Health Label".text = "HP: %s" % HP
