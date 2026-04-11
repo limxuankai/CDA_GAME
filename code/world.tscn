@@ -15,8 +15,8 @@ texture = ExtResource("2_pkg7o")
 region_enabled = true
 region_rect = Rect2(0, 0, 10926.586, 7034.8516)
 
-[node name="loot" type="Node2D" parent="." groups=["loot"]]
-
 [node name="spawner" parent="." instance=ExtResource("1_aqk2v")]
 
 [node name="Player" parent="." instance=ExtResource("3_036b0")]
+
+[node name="loot" type="Node2D" parent="." groups=["loot"]]

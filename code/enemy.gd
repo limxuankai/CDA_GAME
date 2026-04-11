@@ -13,6 +13,22 @@ func _ready():
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
 func _physics_process(_delta):
+	movement()
+
+func take_damage(amount):
+	health -= amount
+	if health <= 0:
+		death()
+
+func death():
+	$CollisionShape2D.set_deferred("disabled", true)
+	var new_gem = exp_gem.instantiate()
+	new_gem.global_position = global_position
+	new_gem.experience = experience
+	loot_base.call_deferred("add_child", new_gem)
+	queue_free()
+
+func movement():
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * speed
 	move_and_slide()
@@ -21,15 +37,3 @@ func _physics_process(_delta):
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
-
-func take_damage(amount):
-	health -= amount
-	if health <= 0:
-		death()
-
-func death():
-	var new_gem = exp_gem.instantiate()
-	new_gem.global_position = global_position
-	new_gem.experience = experience
-	loot_base.call_deferred("add_child",new_gem)
-	queue_free()

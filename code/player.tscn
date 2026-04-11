@@ -34,7 +34,6 @@ scale = Vector2(20, 20)
 texture = ExtResource("2_i3pqv")
 
 [node name="Pistol" type="Sprite2D" parent="."]
-visible = false
 texture_filter = 1
 position = Vector2(134.99998, -15.000038)
 scale = Vector2(15, 15)
@@ -46,16 +45,13 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("CapsuleShape2D_sweqy")
 
 [node name="GunTip" type="Marker2D" parent="."]
-visible = false
 position = Vector2(84.99999, -20.000034)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
-visible = false
 scale = Vector2(0.9999997, 0.9999997)
 stream = ExtResource("5_sweqy")
 
@@ -66,33 +62,41 @@ position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_cxr5p")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-visible = false
-offset_left = -205.0
-offset_top = -305.0
-offset_right = 240.0
-offset_bottom = -175.0
+offset_left = -105.0
+offset_top = -215.00003
+offset_right = 124.99997
+offset_bottom = -190.00003
 theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
 max_value = 3.0
 show_percentage = false
 
-[node name="HealthLabel" type="Label" parent="HealthBar"]
-visible = false
-layout_mode = 0
-offset_left = 29.999998
-offset_top = 19.999996
-offset_right = 415.0
-offset_bottom = 110.0
-theme_override_font_sizes/font_size = 64
-text = "HP:"
-horizontal_alignment = 1
-
 [node name="ExpCollect" type="Area2D" parent="."]
-visible = false
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="ExpRange" type="CollisionShape2D" parent="ExpCollect"]
 position = Vector2(4.999998, 4.9999623)
 shape = SubResource("CircleShape2D_i3pqv")
+
+[node name="ExpBar" type="ProgressBar" parent="."]
+anchors_preset = -1
+anchor_left = -9.924001
+anchor_top = -10.120001
+offset_left = -2880.0
+offset_top = -1620.0
+offset_right = 2879.9995
+offset_bottom = -1550.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = -279.99997
+offset_top = -1549.9998
+offset_right = 280.00003
+offset_bottom = -1272.9998
+theme_override_font_sizes/font_size = 100
+text = "LVL
+1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="area_entered" from="ExpCollect" to="." method="_on_exp_collect_area_entered"]

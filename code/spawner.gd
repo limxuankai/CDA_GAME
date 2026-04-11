@@ -11,7 +11,6 @@ func _ready():
 	$Timer.start()
 
 func _on_timer_timeout():
-	print("spawn")
 	var ene = enemy.instantiate()
 	var x = randf_range(spawn_area.position.x, spawn_area.position.x + spawn_area.size.x)
 	var y = randf_range(spawn_area.position.y, spawn_area.position.y + spawn_area.size.y)

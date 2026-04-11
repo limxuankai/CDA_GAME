@@ -4,8 +4,6 @@ const MAX_HP = 3
 const SPEED = 400.0
 
 var hp = MAX_HP
-var shoot_state = false
-var beat_node = null
 var experience = 0
 var experience_level = 1
 var collected_experience = 0
@@ -18,7 +16,7 @@ var bullet = load("res://bullet.tscn")
 func _ready():
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	add_to_group("player")
-	$"HealthBar".max_value = MAX_HP
+	$"HealthBar".max_value = 3
 	update_health_ui()
 	
 	$Hurtbox.hurt.connect(_on_hit)
@@ -30,7 +28,7 @@ func _ready():
 func _process(delta):
 	var time = $Music.get_playback_position() + AudioServer.get_time_since_last_mix()
 	time -= AudioServer.get_output_latency()
-	print("Current position: ", time)
+	#print("Current position: ", time)
 
 func _input(event):
 	if event.is_action_pressed("shoot"):
@@ -75,9 +73,14 @@ func _on_hit(damage):
 	update_health_ui()
 
 func update_health_ui():
-	$"HealthBar/HealthLabel".text = "HP: %s" % hp
 	$"HealthBar".value = hp
 
 func _on_exp_collect_area_entered(area: Area2D) -> void:
 	if area.is_in_group("loot"):
 		var gem_exp = area.collect()
+		$"ExpBar".value += gem_exp
+		$"ExpBar".max_value = 1 * pow(1.2 , (experience_level - 1))
+		if $"ExpBar".value == $"ExpBar".max_value:
+			experience_level += 1
+			$Label.text = "LVL\nas" + str(experience_level)
+			$"ExpBar".value = 0
