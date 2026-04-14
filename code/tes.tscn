@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://kju2ktajvebt"]
+
+[ext_resource type="Script" uid="uid://cs2fbychpsav0" path="res://uprage.gd" id="1_t0skd"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Upgrade" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 32.0
+script = ExtResource("1_t0skd")
+
+[node name="ColorRect" type="ColorRect" parent="Upgrade"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 37.0
+offset_bottom = 10.0
+color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Upgrade"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 11.0
+offset_right = 37.0
+offset_bottom = 20.0
+color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Upgrade"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 30.0
+color = Color(0.012617188, 0.012617188, 0.012617188, 1)
