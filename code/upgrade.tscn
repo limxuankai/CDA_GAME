@@ -2,51 +2,54 @@
 
 [ext_resource type="Script" uid="uid://cs2fbychpsav0" path="res://uprage.gd" id="1_w52ek"]
 
-[sub_resource type="SystemFont" id="SystemFont_w52ek"]
-
-[node name="Upgrade" type="ColorRect" unique_id=1006309411]
-anchors_preset = -1
-anchor_left = 0.079
-anchor_top = 0.48100004
-anchor_right = 0.079
-anchor_bottom = 0.48100004
-offset_left = -289.008
-offset_top = -394.68802
-offset_right = 2710.992
-offset_bottom = 2605.312
-pivot_offset = Vector2(500, 500)
+[node name="Upgrade Option" type="ColorRect" unique_id=1281965585]
+offset_left = -23.0
+offset_top = -5.0
+offset_right = 1777.0
+offset_bottom = 495.0
+color = Color(0.24705882, 0.05882353, 0.05490196, 1)
 script = ExtResource("1_w52ek")
 
-[node name="First" type="ColorRect" parent="." unique_id=586511569]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1752346881]
 layout_mode = 0
-offset_top = 417.0
-offset_right = 3000.0
-offset_bottom = 1167.0
-color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+offset_left = 55.0
+offset_top = 76.0
+offset_right = 357.0
+offset_bottom = 378.0
 
-[node name="Second" type="ColorRect" parent="First" unique_id=1014532410]
+[node name="Icon" type="TextureRect" parent="ColorRect" unique_id=594975935]
 layout_mode = 0
-offset_top = 1428.0
-offset_right = 3000.0
-offset_bottom = 2178.0
-color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Third" type="ColorRect" parent="First" unique_id=273598534]
-layout_mode = 0
-offset_top = 751.0
-offset_right = 3000.0
-offset_bottom = 1501.0
-color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+[node name="Name" type="Label" parent="." unique_id=1348124021]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37600002
+anchor_top = 0.202
+anchor_right = 0.725
+anchor_bottom = 0.381
+offset_left = -277.80005
+offset_top = -39.0
+offset_right = -319.0
+offset_bottom = 3.5
+theme_override_font_sizes/font_size = 96
+text = "NAME NAME"
 
-[node name="Label" type="Label" parent="." unique_id=1583167931]
+[node name="Description" type="Label" parent="." unique_id=452641429]
 layout_mode = 0
-offset_left = 51.0
-offset_top = 30.0
-offset_right = 2942.0
-offset_bottom = 366.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("SystemFont_w52ek")
-theme_override_font_sizes/font_size = 128
-text = "LEVEL UP! 
-Click to Upgrade! "
-horizontal_alignment = 1
+offset_left = 417.0
+offset_top = 216.0
+offset_right = 1712.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 96
+text = "i am cringe"
+
+[node name="Level" type="Label" parent="." unique_id=718699349]
+layout_mode = 0
+offset_left = 1188.0
+offset_top = 55.0
+offset_right = 1782.0
+offset_bottom = 187.0
+theme_override_font_sizes/font_size = 96
+text = "123333	"

@@ -1,27 +1,27 @@
 extends ColorRect
 
-@onready var rect1 = $First
-@onready var rect2 = $First/Second
-@onready var rect3 = $First/Third
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var Name = $Label_Name
+@onready var Description = $Label_Description
+@onready var Level = $Label_Level
+@onready var Icon = $ColorRect/Icon
 
+var mouse_over = false
+var item = null
+@onready var player = get_tree().get_first_node_in_group("player")
+
+signal selected_upgrade(upgrade)
+
+func _ready():
+	connect("selected_upgrade",Callable(player,"upgrade_character"))
+	
+	
 func _input(event):
-	var mouse_pos = get_global_mouse_position()
-	if event is InputEventMouseButton and event.pressed:
-		if rect1.get_global_rect().has_point(mouse_pos):
-			print ("1")
-			get_tree().call_group("player", "upgrade_reload", 20)
-			get_tree().paused = false
-			queue_free()
-		elif rect2.get_global_rect().has_point(mouse_pos):
-			print ("2")
-			get_tree().call_group("player", "upgrade_speed", 2000)
-			get_tree().paused = false
-			queue_free()
-		elif rect3.get_global_rect().has_point(mouse_pos):
-			print ("3")
-			get_tree().call_group("player", "upgrade_damage", 10)
-			get_tree().paused = false
-			queue_free()
+	if event.is_action("click"):
+		if mouse_over:
+			emit_signal("selected_upgrade",item)
+
+func _on_mouse_entered():
+	mouse_over = true
+
+func _on_mouse_exited():
+	mouse_over = false

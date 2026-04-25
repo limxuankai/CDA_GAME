@@ -107,6 +107,7 @@ scale = Vector2(0.9999998, 0.9999998)
 
 [node name="Level_Up" type="Panel" parent="." unique_id=287930812]
 unique_name_in_owner = true
+process_mode = 2
 visible = false
 offset_left = -1000.0
 offset_top = -1405.0

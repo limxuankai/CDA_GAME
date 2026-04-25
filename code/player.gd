@@ -13,13 +13,14 @@ var collected_experience = 0
 @onready var sprite2 = $Pistol
 @onready var levelup_screen = get_node("%Level_Up")
 @onready var levelup_lbl = get_node("%Label_LVL_Up")
-@onready var upgrade_options = get_node("%Upgrade_ptions")
+@onready var upgrade_options = get_node("%Upgrade_Options")
+@onready var itemoptions = preload("res://upgrade.tscn") 
+
 var bullet = load("res://bullet.tscn")
 var bullet_speed = 800
 var bullet_damage = 1
 
 var upgrade_panel = load("res://upgrade.tscn")
-@onready var itemOptions = preload("res://item_option.tscn")
 
 var shot_cooldown = 0.5
 var time_since_last_shot = 0.0
@@ -108,47 +109,35 @@ func _on_exp_collect_area_entered(area: Area2D) -> void:
 		if $"ExpBar".value == $"ExpBar".max_value:
 			experience_level += 1
 			$Label.text = "LVL\n" + str(experience_level)
-			
-			#upgrade stuff
-			var upgrade_panel_instance = upgrade_panel.instantiate()
-			upgrade_panel_instance.global_position = Vector2(-1500, -1500)
-			$Camera2D.add_child(upgrade_panel_instance)
-			upgrade_panel_instance.move_to_front()
-			upgrade_panel_instance.process_mode = Node.PROCESS_MODE_ALWAYS
-			get_tree().paused = true
-			
+			levelup()
 			$"ExpBar".value = 0
 
-#func levelup():
-	#$Label.text = str("Level: ",experience_level)
-	#var tween = levelup_screen.create_tween()
-	#tween.tween_property(levelup_screen,"position",Vector2(220,50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	#tween.play()
-	#levelup_screen.visible = true
-	#var options = 0
-	#var optionsmax = 3
-	#while options < optionsmax:
-		#var option_choice = itemOptions.instantiate()
-		#option_choice.item = get_random_item()
-		#upgradeOptions.add_child(option_choice)
-		#options += 1
-	#get_tree().paused = true
-	#
-#func upgrade_character(upgrade):
-	#match upgrade:
-		#"speed1","speed2","speed3","speed4":
-			#SPEED += 20.0
+func levelup():
+	$Label.text = str("Level: ",experience_level)
+	var tween = levelup_screen.create_tween()
+	tween.tween_property(levelup_screen,"position",Vector2(0,0),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.play()
+	levelup_screen.visible = true
+	var options = 0
+	var optionsmax = 3
+	while options < optionsmax:
+		var option_choice = itemoptions.instantiate()
+		upgrade_options.add_child(option_choice)
+		options += 1
+	get_tree().paused = true
+	
+func upgrade_character(upgrade):
 		#"food":
 			#hp += 1
 			#hp = clamp(hp,0, MAX_HP)
 	#adjust_gui_collection(upgrade)
 	#attack()
-	#var option_children = upgradeOptions.get_children()
-	#for i in option_children:
-		#i.queue_free()
-	#upgrade_options.clear()
+	var option_children = upgrade_options.get_children()
+	for i in option_children:
+		i.queue_free()
+	upgrade_options.clear()
 	#collected_upgrades.append(upgrade)
-	#levelPanel.visible = false
-	#levelPanel.position = Vector2(800,50)
-	#get_tree().paused = false
+	levelup_screen.visible = false
+	levelup_screen.position = Vector2(800,50)
+	get_tree().paused = false
 	#calculate_experience(0)

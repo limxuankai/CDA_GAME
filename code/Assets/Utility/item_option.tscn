@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://cxax3d1nnik1q"]
-
-[node name="ItemOption" type="ColorRect" unique_id=470177620]
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1202773541]
-layout_mode = 0
-offset_right = 810.0
-offset_bottom = 208.0
