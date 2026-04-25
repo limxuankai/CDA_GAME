@@ -1,41 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://hvn2x8sto6ix"]
+[gd_scene format=3 uid="uid://hvn2x8sto6ix"]
 
 [ext_resource type="Script" uid="uid://cs2fbychpsav0" path="res://uprage.gd" id="1_w52ek"]
 
-[node name="Upgrade" type="ColorRect"]
+[sub_resource type="SystemFont" id="SystemFont_w52ek"]
+
+[node name="Upgrade" type="ColorRect" unique_id=1006309411]
 anchors_preset = -1
 anchor_left = 0.079
 anchor_top = 0.48100004
 anchor_right = 0.079
 anchor_bottom = 0.48100004
-offset_left = -500.008
-offset_top = -499.68802
-offset_right = 2499.992
-offset_bottom = 2500.312
+offset_left = -289.008
+offset_top = -394.68802
+offset_right = 2710.992
+offset_bottom = 2605.312
 pivot_offset = Vector2(500, 500)
 script = ExtResource("1_w52ek")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="First" type="ColorRect" parent="." unique_id=586511569]
 layout_mode = 0
-offset_left = 379.0
-offset_top = 214.0
-offset_right = 2606.0
-offset_bottom = 786.0
-pivot_offset = Vector2(500, 500)
+offset_top = 417.0
+offset_right = 3000.0
+offset_bottom = 1167.0
 color = Color(0.012617188, 0.012617188, 0.012617188, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="Second" type="ColorRect" parent="First" unique_id=1014532410]
 layout_mode = 0
-offset_left = 260.0
-offset_top = 911.0
-offset_right = 2788.0
-offset_bottom = 1644.0
+offset_top = 1428.0
+offset_right = 3000.0
+offset_bottom = 2178.0
 color = Color(0.012617188, 0.012617188, 0.012617188, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="."]
+[node name="Third" type="ColorRect" parent="First" unique_id=273598534]
 layout_mode = 0
-offset_left = 194.0
-offset_top = 1979.0
-offset_right = 2753.0
-offset_bottom = 2749.0
+offset_top = 751.0
+offset_right = 3000.0
+offset_bottom = 1501.0
 color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1583167931]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 30.0
+offset_right = 2942.0
+offset_bottom = 366.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_w52ek")
+theme_override_font_sizes/font_size = 128
+text = "LEVEL UP! 
+Click to Upgrade! "
+horizontal_alignment = 1

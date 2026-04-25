@@ -11,11 +11,15 @@ var collected_experience = 0
 @onready var gun_tip = $GunTip
 @onready var sprite = $Player
 @onready var sprite2 = $Pistol
+@onready var levelup_screen = get_node("%Level_Up")
+@onready var levelup_lbl = get_node("%Label_LVL_Up")
+@onready var upgrade_options = get_node("%Upgrade_ptions")
 var bullet = load("res://bullet.tscn")
 var bullet_speed = 800
 var bullet_damage = 1
 
 var upgrade_panel = load("res://upgrade.tscn")
+@onready var itemOptions = preload("res://item_option.tscn")
 
 var shot_cooldown = 0.5
 var time_since_last_shot = 0.0
@@ -80,10 +84,6 @@ func movement():
 	elif x_mov > 0:
 		sprite.flip_h = false
 		sprite2.flip_h = false
-		sprite2.position = Vector2(135, -15)
-		gun_tip.position = Vector2(85, -20)
-#endregion
-
 func _on_hit(damage):
 	hp -= damage
 	if hp < 1:
@@ -114,10 +114,10 @@ func _on_exp_collect_area_entered(area: Area2D) -> void:
 
 #func levelup():
 	#$Label.text = str("Level: ",experience_level)
-	#var tween = levelPanel.create_tween()
-	#tween.tween_property(levelPanel,"position",Vector2(220,50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	#var tween = levelup_screen.create_tween()
+	#tween.tween_property(levelup_screen,"position",Vector2(220,50),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	#tween.play()
-	#levelPanel.visible = true
+	#levelup_screen.visible = true
 	#var options = 0
 	#var optionsmax = 3
 	#while options < optionsmax:

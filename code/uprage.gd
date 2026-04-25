@@ -1,16 +1,11 @@
 extends ColorRect
 
-@onready var rect1 = $ColorRect
-@onready var rect2 = $ColorRect2
-@onready var rect3 = $ColorRect3
+@onready var rect1 = $First
+@onready var rect2 = $First/Second
+@onready var rect3 = $First/Third
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _input(event):
 	var mouse_pos = get_global_mouse_position()
