@@ -115,7 +115,7 @@ func _on_exp_collect_area_entered(area: Area2D) -> void:
 func levelup():
 	$Label.text = str("Level: ",experience_level)
 	var tween = levelup_screen.create_tween()
-	tween.tween_property(levelup_screen,"position",Vector2(0,0),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.tween_property(levelup_screen,"position",Vector2(-1000,-1300),0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
 	tween.play()
 	levelup_screen.visible = true
 	var options = 0
@@ -127,17 +127,13 @@ func levelup():
 	get_tree().paused = true
 	
 func upgrade_character(upgrade):
-		#"food":
-			#hp += 1
-			#hp = clamp(hp,0, MAX_HP)
-	#adjust_gui_collection(upgrade)
-	#attack()
 	var option_children = upgrade_options.get_children()
 	for i in option_children:
 		i.queue_free()
-	upgrade_options.clear()
 	#collected_upgrades.append(upgrade)
 	levelup_screen.visible = false
 	levelup_screen.position = Vector2(800,50)
+	SPEED = SPEED * experience_level
+	bullet_speed = bullet_speed * experience_level
 	get_tree().paused = false
 	#calculate_experience(0)

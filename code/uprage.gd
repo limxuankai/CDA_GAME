@@ -1,4 +1,4 @@
-extends ColorRect
+extends Button
 
 @onready var Name = $Label_Name
 @onready var Description = $Label_Description
@@ -12,16 +12,10 @@ var item = null
 signal selected_upgrade(upgrade)
 
 func _ready():
-	connect("selected_upgrade",Callable(player,"upgrade_character"))
-	
-	
-func _input(event):
-	if event.is_action("click"):
-		if mouse_over:
-			emit_signal("selected_upgrade",item)
+	# Connect the 'pressed' signal to a local function
+	$".".pressed.connect(_on_my_button_pressed)
+	connect("selected_upgrade", Callable(player, 'upgrade_character'))
 
-func _on_mouse_entered():
-	mouse_over = true
-
-func _on_mouse_exited():
-	mouse_over = false
+func _on_my_button_pressed():
+	emit_signal("selected_upgrade",item)
+	print("Clicked")
